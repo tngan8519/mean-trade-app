@@ -1,0 +1,40 @@
+<div *ngIf="loadingDetail">loading ...</div>
+<div *ngIf="errorDetail">{{ errorDetail }}</div>
+<div *ngIf="!loadingDetail && !errorDetail && toy">
+  <div class="card the">
+    <div class="row no-gutters">
+      <div class="col-md-7 col-lg-6 d-flex align-items-center">
+        <img
+          src="http://localhost:8000/{{ toy.imgSrc }}"
+          class="card-img"
+          alt="{{ toy.name }}"
+        />
+      </div>
+      <div class="col-md-4 offset-md-1 col-lg-4">
+        <div class="card-body">
+          <h5 class="card-title text-info">{{ toy.name }}</h5>
+          <p class="card-text">{{ toy.rentPrice }} /week rent</p>
+          <p class="card-text">{{ toy.salePrice }} /buy</p>
+          <p class="card-text">or trade</p>
+          <p class="card-text">
+            <small class="text-muted">
+              Created by {{ toy.author.username }} -
+              {{ date }}
+            </small>
+          </p>
+          <div *ngIf="isSameUser">
+            <a routerLink="/toy/{{ toy._id }}/edit" class="btn btn-warning">
+              Edit
+            </a>
+
+            <button (click)="handleDelete(toy._id)" class="btn btn-danger">
+              Delete
+            </button>
+          </div>
+          <div *ngIf="loadingDelete">loading ...</div>
+          <div *ngIf="errorDelete">{{ errorDelete }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

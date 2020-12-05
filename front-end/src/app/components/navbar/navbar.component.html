@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark text-capitalize">
+  <a routerLink="/" class="navbar-brand"> Toy Trader </a>
+  <div class="d-flex justify-content-end">
+    <a *ngIf="userInfo" routerLink="/#" class="nav-a disabled">
+      Hi {{ userInfo.username }}
+    </a>
+    <a *ngIf="userInfo" routerLink="/#" (click)="handleLogout()" class="nav-a">
+      Sign Out
+    </a>
+
+    <a *ngIf="userInfo" routerLink="/post" class="nav-a"> Post </a>
+
+    <a *ngIf="!userInfo" routerLink="/login" class="nav-a"> Sign In </a>
+    <a *ngIf="!userInfo" routerLink="/register" class="nav-a"> Register </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a routerLink="/browse" class="nav-a"> Browse </a>
+      </li>
+    </ul>
+  </div>
+</nav>

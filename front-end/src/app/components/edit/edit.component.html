@@ -1,0 +1,99 @@
+<div *ngIf="loadingEdit">loading ...</div>
+<div *ngIf="errorEdit">{{ errorEdit }}</div>
+
+<div *ngIf="!loadingEdit && !errorEdit && toy" class="post">
+  <h1>Edit {{ toy.name }}</h1>
+  <form>
+    <div class="form-group">
+      <label for="name">Toy Name: </label>
+      <input
+        [(ngModel)]="toy.name"
+        name="n"
+        type="text"
+        class="form-control"
+        id="name"
+        name="toyname"
+      />
+    </div>
+    <div class="form-group">
+      <label for="pic">Image: </label>
+
+      <div>
+        <img
+          *ngIf="toy.imgSrc"
+          src="http://localhost:8000/{{ toy.imgSrc }}"
+          alt=""
+          width="50%"
+        />
+      </div>
+      <input
+        type="file"
+        (change)="handleFile($event)"
+        class="form-control-file"
+        id="pic"
+        required
+      />
+
+      <img
+        *ngIf="fileUpload"
+        src="http://localhost:8000/{{ fileUpload }}"
+        class="post__img"
+        alt=""
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="rent">Rent price: </label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">$</div>
+        </div>
+        <input
+          [(ngModel)]="toy.rentPrice"
+          name="r"
+          type="number"
+          class="form-control"
+          id="rent"
+          name="rentprice"
+          min="0.01"
+          step="0.01"
+        />
+        <div class="input-group-append">
+          <div class="input-group-text">/ week rent</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="sale">Sale price: </label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">$</div>
+        </div>
+        <input
+          [(ngModel)]="toy.salePrice"
+          name="s"
+          type="number"
+          class="form-control"
+          id="sale"
+          name="saleprice"
+          min="0.01"
+          step="0.01"
+        />
+        <div class="input-group-append">
+          <div class="input-group-text">/ buy</div>
+        </div>
+      </div>
+    </div>
+    <button
+      (click)="handleSubmit($event)"
+      type="submit"
+      class="btn btn-primary"
+    >
+      Submit
+    </button>
+    <div *ngIf="loadingEdit">loading ...</div>
+    <div *ngIf="errorEdit">{{ errorEdit }}</div>
+  </form>
+</div>
+
+<div *ngIf="!loadingEdit && !errorEdit && !toy">Cannot found the toy</div>
