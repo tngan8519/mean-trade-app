@@ -63,7 +63,7 @@ export class ToyService {
       Authorization: `Bearer ${token}`,
     });
     let options = { headers: headers };
-    return this.http.delete<Toy>(`${this.url}/api/toys/${id}`, options);
+    return this.http.delete<any>(`${this.url}/api/toys/${id}`, options);
   }
 
   editToy(
